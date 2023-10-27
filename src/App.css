@@ -70,3 +70,23 @@ input{
   background-color: #2a75bb;
   border-left: 3px #2a75bb solid;
 }
+
+.list{
+  display: grid;
+  margin-top: 50px;
+  grid-template-columns: repeat(5, 0.35fr);
+  gap: 20px 50px;
+}
+
+.card__container{
+  width: 200px;
+  height: 330px;
+  background-color: #ffcb0550;
+  border: 2px #3c5aa6 solid;
+  border-radius: 2%;
+}
+
+.image{
+  padding: 5px;
+  width: 90%;
+}

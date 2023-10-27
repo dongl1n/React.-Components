@@ -6,12 +6,18 @@ import {getAllCard, getPokemonCard} from './pokemonApi'
 function isEmpty(data){
   if(data){
     let listItems = data.map((dat) =>
-    <li>{dat.name}</li>)
+      <div class="card__container">
+        <div class="card__image">
+          <img src={dat.images.small} class="image" alt="card"/>
+        </div>
+        <div>{dat.name}</div>
+      </div>
+    )
     return(
-      <ul>{listItems}</ul>
+      <div class="list">{listItems}</div>
     )
   }
-  else return <span>test</span>;
+  else return;
 }
 
 function App() {
@@ -19,7 +25,7 @@ function App() {
 
   const form = new Form();
   let res;
-  getPokemonCard("ditto").then((response) => {
+  getAllCard().then((response) => {
     setItems(response);
   })
   console.log(items.data)
