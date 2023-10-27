@@ -1,42 +1,72 @@
+body{
+  min-width: 100% !important;
+  justify-content: center;
+}
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 5px;
   text-align: center;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.top, .search__container{
+  width: 100%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+span{
+  font-family: 'Pokemon solid';
+  color: #ffcb05;
+  text-shadow: #3c5aa6 3px 3px 3px, #3c5aa6 3px 3px 3px;
+  -webkit-text-stroke: #2a75bb 3px;
+  letter-spacing: 3px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.search__container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.card {
-  padding: 2em;
+select{
+  height: 50px;
+  padding: 5px;
+  font-size: 20px;
+  border-top-left-radius: 20%;
+  border-bottom-left-radius: 20%;
+  border: 2px #ffcb05 solid;
+  border-right: none;
+  outline: none;
+}
+input{
+  min-width: 250px;
+  width: 25%;
+  padding-left: 15px;
+  height: 44px;
+  font-size: 20px;
+  border: 2px #ffcb05 solid;
+  border-left: none;
+  border-right: none;
+  outline: none;
+}
+.search{
+  height: 50px;
+  padding: 2px 24px;
+  font-size: 20px;
+  border-radius: 20%;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 3px #3c5aa6 solid;
+  background-color: #3c5aa6;
+  background-image: url(./assets/search.svg);
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  outline: none !important;
+  transition: .3s ease;
 }
 
-.read-the-docs {
-  color: #888;
+.search:hover{
+  background-color: #2a75bb;
+  border-left: 3px #2a75bb solid;
 }
