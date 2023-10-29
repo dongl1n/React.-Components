@@ -17,7 +17,7 @@ function Cards(props) {
 
   if (items.data) {
     const listItems = items.data.map((dat) => (
-      <div className="card__container">
+      <div className="card__container" key={dat.id}>
         <div className="card__image">
           <img src={dat.images.small} className="image" alt="card" />
         </div>
