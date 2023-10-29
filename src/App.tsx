@@ -1,54 +1,57 @@
-import { useState, Component } from 'react'
-import Form from './handleSearch'
-import './App.css'
-import {getAllCard, getPokemonCard} from './pokemonApi'
-
-function isEmpty(data){
-  if(data){
-    let listItems = data.map((dat) =>
-      <div class="card__container">
-        <div class="card__image">
-          <img src={dat.images.small} class="image" alt="card"/>
-        </div>
-        <div>{dat.name}</div>
-      </div>
-    )
-    return(
-      <div class="list">{listItems}</div>
-    )
-  }
-  else return;
-}
+import { useState } from 'react';
+import './App.css';
+import Cards from './Cards';
 
 function App() {
-  const [items, setItems] = useState([]);
+  const [pages, setPages] = useState(1);
+  const [input, setInput] = useState('');
+  const [quary, setQuary] = useState('');
 
-  const form = new Form();
-  let res;
-  getAllCard().then((response) => {
-    setItems(response);
-  })
-  console.log(items.data)
-  
   return (
     <>
-      <section class="top">
-        <h1>What is <span>Pokémon?</span></h1>
-        <form class="search__container" onClick={form!.handleForm} onChange={form!.handleForm}>
+      <section className="top">
+        <h1>
+          What is <span>Pokémon?</span>
+        </h1>
+        <form className="search__container">
           <select name="selectedCardFilter">
-          <option value="all">All</option>
             <option value="name">Name</option>
             <option value="type">Type</option>
           </select>
-          <input></input>
-          <button class="search"></button>
+          <input
+            onChange={(event) => {
+              setInput(event?.target.value);
+            }}
+          ></input>
+          <button
+            className="search"
+            onClick={() => {
+              setQuary(input);
+            }}
+          ></button>
         </form>
       </section>
-      <section class ="bottom">
-      {isEmpty(items.data)}
+      <section className="bottom" id="bottom">
+        <Cards page={pages} name={quary} />
+        <button
+          className="nav prev"
+          onClick={() => {
+            if (pages != 1) setPages(pages - 1);
+          }}
+        >
+          Prev
+        </button>
+        <button
+          className="nav next"
+          onClick={() => {
+            setPages(pages + 1);
+          }}
+        >
+          Next
+        </button>
       </section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

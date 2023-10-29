@@ -90,3 +90,23 @@ input{
   padding: 5px;
   width: 90%;
 }
+
+.nav{
+  margin-top: 20px;
+  padding: 2px 24px;
+  border-radius: 10%;
+  border-left: 3px #3c5aa6 solid;
+  background-color: #3c5aa6;
+  outline: none !important;
+  transition: .3s ease;
+  color: white;
+}
+
+.prev{
+  margin-right: 40px;
+}
+
+.nav:hover{
+  background-color: #2a75bb;
+  border-left: 3px #2a75bb solid;
+}

@@ -1,19 +1,19 @@
-import pokemon from 'pokemontcgsdk'
+import pokemon from 'pokemontcgsdk';
 
-pokemon.configure({apiKey: 'e6d53ce0-e9ce-4093-99c9-93b8badada32'})
+pokemon.configure({ apiKey: 'dec9de6f-40f6-44cf-a11a-a7dd86667478' });
 
-function getAllCard(){
-  return pokemon.card.where({pageSize: 10, page: 1})
-  .then(card => {
+function getAllCard(page) {
+  return pokemon.card.where({ pageSize: 10, page: `${page}` }).then((card) => {
     return card;
-  })
+  });
 }
 
-function getPokemonCard(value){
-  return pokemon.card.where({ q: `name:${value}` })
-  .then(card => {
+function getPokemonCard(page, name) {
+  return pokemon.card
+    .where({ q: `name:${name}`, pageSize: 10, page: `${page}` })
+    .then((card) => {
       return card;
-  })
+    });
 }
 
-export {getAllCard, getPokemonCard}
+export { getAllCard, getPokemonCard };
