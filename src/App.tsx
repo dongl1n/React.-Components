@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 import Cards from './Cards';
+import ErrorBoundary from './ErrorBoundary';
+import Button from './Button';
 
 function App() {
   let quaryText = '';
@@ -9,6 +11,7 @@ function App() {
   const [pages, setPages] = useState(1);
   const [input, setInput] = useState('');
   const [quary, setQuary] = useState(quaryText);
+  const [error, setError] = useState(false);
 
   return (
     <>
@@ -24,29 +27,38 @@ function App() {
         >
           <select name="selectedCardFilter">
             <option value="name">Name</option>
-            <option value="type">Type</option>
           </select>
           <input
+            placeholder={quary}
             onChange={(event) => {
               setInput(event?.target.value);
             }}
           ></input>
-          <button
-            className="search"
-            onClick={() => {
-              localStorage.setItem('pokemonQuary', input);
-              setPages(1);
-              setQuary(input);
-            }}
-          ></button>
+          <Button
+            err={error}
+            setErr={setError}
+            pages={pages}
+            setPages={setPages}
+            input={input}
+            setInput={setInput}
+            quary={quary}
+            setQuary={setQuary}
+          />
         </form>
+        <div>
+          Enter the Pokemon&#39;s name. For example: Pikachu, Eevee, Bulbasaur,
+          etc.
+        </div>
       </section>
       <section className="bottom" id="bottom">
-        <Cards page={pages} name={quary} />
+        <ErrorBoundary err={error} setErr={setError}>
+          <Cards page={pages} name={quary} err={error} setErr={setError} />
+        </ErrorBoundary>
         <button
           className="nav prev"
           onClick={() => {
             if (pages != 1) setPages(pages - 1);
+            location.reload();
           }}
         >
           Prev

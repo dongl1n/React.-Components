@@ -2,17 +2,32 @@ import { useState } from 'react';
 import { getAllCard, getPokemonCard } from './pokemonApi';
 
 function Cards(props) {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState('Loading...');
   if (!props.name) {
-    getAllCard(props.page).then((response) => {
-      setItems(response);
-      return response;
-    });
+    getAllCard(props.page)
+      .then((response) => {
+        console.log('СТраница' + props.page);
+        setItems(response);
+        if (!items.data) setErr(true);
+        return response;
+      })
+      .catch(function () {});
   } else {
-    getPokemonCard(props.page, props.name).then((response) => {
-      setItems(response);
-      return response;
-    });
+    getPokemonCard(props.page, props.name)
+      .then((response) => {
+        console.log('СТраница' + props.page);
+        setItems(response);
+        if (!items.data.length) props.setErr(true);
+        return response;
+      })
+      .catch(function () {});
+  }
+
+  if (items === 'Loading...') return <div>Loading...</div>;
+  if (props.err) {
+    throw new Error(
+      'Error: No cards found. Enter a new query and refresh the page'
+    );
   }
 
   if (items.data) {
@@ -26,7 +41,7 @@ function Cards(props) {
       </div>
     ));
     return <div className="list">{listItems}</div>;
-  } else return;
+  }
 }
 
 export default Cards;
