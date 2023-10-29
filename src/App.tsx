@@ -3,9 +3,12 @@ import './App.css';
 import Cards from './Cards';
 
 function App() {
+  let quaryText = '';
+  if (localStorage.getItem('pokemonQuary'))
+    quaryText = localStorage.getItem('pokemonQuary');
   const [pages, setPages] = useState(1);
   const [input, setInput] = useState('');
-  const [quary, setQuary] = useState('');
+  const [quary, setQuary] = useState(quaryText);
 
   return (
     <>
@@ -13,7 +16,12 @@ function App() {
         <h1>
           What is <span>Pokémon?</span>
         </h1>
-        <form className="search__container">
+        <form
+          className="search__container"
+          onClick={(event) => {
+            event.preventDefault();
+          }}
+        >
           <select name="selectedCardFilter">
             <option value="name">Name</option>
             <option value="type">Type</option>
@@ -26,6 +34,8 @@ function App() {
           <button
             className="search"
             onClick={() => {
+              localStorage.setItem('pokemonQuary', input);
+              setPages(1);
               setQuary(input);
             }}
           ></button>

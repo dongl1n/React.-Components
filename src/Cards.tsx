@@ -22,6 +22,7 @@ function Cards(props) {
           <img src={dat.images.small} className="image" alt="card" />
         </div>
         <div>{dat.name}</div>
+        <div>Type: {dat.types[0]}</div>
       </div>
     ));
     return <div className="list">{listItems}</div>;
